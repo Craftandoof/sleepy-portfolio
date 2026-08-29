@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Craftandoof's Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka (Cute, rounded font) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for some icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Fredoka', 'sans-serif'],
+                    },
+                    colors: {
+                        // Nova paleta escura
+                        'crafto-bg': '#0f0f1a',
+                        'crafto-card': '#1e1e2f',
+                        'crafto-dark': '#e0e0e0',     // texto claro
+                        'crafto-muted': '#a0a0b0',   // texto secundário
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f0f1a;
+            color: #e0e0e0;
+        }
+        /* Custom scrollbar com cores escuras */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f0f1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #06b6d4;
+            border-radius: 10px;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(6, 182, 212, 0.3);
+        }
+        /* Gradiente de texto mantido */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to top, #3b82f6, #06b6d4);
+        }
+        /* Classe para cards escuros */
+        .card-dark {
+            background-color: #1e1e2f;
+            border-color: #2a2a3f;
+        }
+        .card-dark-border {
+            border-color: #2a2a3f;
+        }
+        .nav-blur {
+            background-color: rgba(15, 15, 26, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #2a2a3f;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-cyan-300 selection:text-[#0f0f1a]">
+
+    <nav class="fixed w-full nav-blur z-50 shadow-sm">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#home" class="font-bold text-xl flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-t from-blue-500 to-cyan-400 flex items-center justify-center text-white text-xs">
+                    C
+                </div>
+                <span class="text-gradient">Craftandoof</span>
+            </a>
+            <div class="hidden md:flex gap-6 text-sm font-medium text-crafto-dark/70">
+                <a href="#portfolio" class="hover:text-cyan-400 transition">Portfolio</a>
+                <a href="#pricing" class="hover:text-cyan-400 transition">Pricing</a>
+                <a href="#policies" class="hover:text-cyan-400 transition">Policies & ToS</a>
+                <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-cyan-400 text-xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <section id="home" class="pt-32 pb-20 px-4">
+        <div class="max-w-3xl mx-auto text-center flex flex-col items-center">
+            <div class="relative group">
+                <!-- Foto de perfil (substitua o src pelo seu link) -->
+                <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Crafto&backgroundColor=06b6d4" 
+                     alt="Sleepy Crafto" 
+                     class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-[#1e1e2f] shadow-xl mb-6 group-hover:scale-105 transition-transform duration-300">
+                
+                <!-- Status Badge -->
+                <div class="absolute -bottom-2 -right-2 bg-green-400 text-[#0f0f1a] text-xs font-bold px-3 py-1 rounded-full border-2 border-[#1e1e2f] shadow-sm flex items-center gap-1">
+                    <div class="w-2 h-2 bg-[#0f0f1a] rounded-full animate-pulse"></div> Open
+                </div>
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Hi! I'm <span class="text-gradient">Sleepy Crafto ✨</span></h1>
+            <p class="text-lg md:text-xl text-crafto-muted mb-2">(@craftandoof)</p>
+            <p class="text-xl font-medium mb-6 text-crafto-dark">Creator of Silly Moves. I am currently open for animation commissions!</p>
+            
+            <p class="mb-8 text-crafto-muted max-w-lg mx-auto">
+                I did Silly Moves, Silly Punchies, and some Punchy animations.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#pricing" class="bg-gradient-to-t from-blue-500 to-cyan-400 text-white px-8 py-3 rounded-full font-semibold shadow-lg shadow-cyan-900/30 hover:scale-105 transition-all">
+                    Commission Me
+                </a>
+                <a href="#portfolio" class="bg-[#1e1e2f] text-cyan-400 px-8 py-3 rounded-full font-semibold shadow-md hover:bg-[#2a2a3f] hover:scale-105 transition-all border border-[#2a2a3f]">
+                    View Work
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-16 px-4 bg-[#151525]/60">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-2 text-crafto-dark">
+                <span>🌹</span> Portfolio
+            </h2>
+            
+            <!-- Grid of Works - preenchido por JS -->
+            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Injetado via JS -->
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-16 px-4">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-2 text-crafto-dark">
+                <span>🥥</span> Pricing
+            </h2>
+            
+            <div class="card-dark rounded-3xl p-8 shadow-xl shadow-cyan-900/20 border border-[#2a2a3f] text-center relative overflow-hidden">
+                <div class="absolute -top-10 -right-10 text-9xl opacity-5">🥥</div>
+                <h3 class="text-2xl font-bold mb-4 text-cyan-400">Base Rate</h3>
+                <div class="text-5xl font-bold mb-2 text-white">
+                    $2 <span class="text-xl text-crafto-muted font-normal">USD</span>
+                </div>
+                <p class="text-crafto-muted mb-6 italic">Starting price per animation. (Helps fund my first PC! 🖥️)</p>
+                
+                <div class="bg-[#0f0f1a] rounded-2xl p-4 text-left mb-6 border border-[#2a2a3f]">
+                    <p class="font-medium text-crafto-dark"><i class="fas fa-info-circle text-cyan-400 mr-2"></i> <strong>Quotes:</strong> Final prices depend on complexity and will be confirmed privately before starting work.</p>
+                </div>
+                
+                <a href="#contact" class="inline-block bg-gradient-to-t from-blue-500 to-cyan-400 text-white px-6 py-3 rounded-xl font-bold shadow-md hover:shadow-lg hover:scale-105 transform transition-all">
+                    Ver Meios de Pagamento e Contato 👇
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="policies" class="py-16 px-4 bg-[#151525]/60">
+        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+            
+            <!-- Payment & Cancellation -->
+            <div>
+                <h2 class="text-2xl font-bold mb-6 flex items-center gap-2 border-b-2 border-cyan-900 pb-2 text-crafto-dark">
+                    <span>💳</span> Payment & Cancellation
+                </h2>
+                <ul class="space-y-4">
+                    <li class="card-dark p-4 rounded-2xl shadow-sm border border-[#2a2a3f]">
+                        <strong class="text-cyan-400 block mb-1">Pay Upon Completion</strong>
+                        Payment is required only after the animation is fully finished and approved.
+                    </li>
+                    <li class="card-dark p-4 rounded-2xl shadow-sm border border-[#2a2a3f]">
+                        <strong class="text-cyan-400 block mb-1">No Refunds</strong>
+                        Since payment happens right before delivery, all sales are final once files are handed over.
+                    </li>
+                    <li class="card-dark p-4 rounded-2xl shadow-sm border border-[#2a2a3f]">
+                        <strong class="text-cyan-400 block mb-1">Free Cancellations</strong>
+                        You can cancel your order anytime before making the payment with no cost or penalty.
+                    </li>
+                    <li class="card-dark p-4 rounded-2xl shadow-sm border border-[#2a2a3f]">
+                        <strong class="text-cyan-400 block mb-1">File Delivery</strong>
+                        Final files are held until payment is made. If you need extra time to pay, I can hold your completed files.
+                    </li>
+                    <li class="card-dark p-4 rounded-2xl shadow-sm border border-[#2a2a3f]">
+                        <strong class="text-cyan-400 block mb-1">Artist Cancellations</strong>
+                        If I cannot complete a project due to fit, time, or unexpected issues, I will notify you immediately and cancel the request politely.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Terms of Service -->
+            <div>
+                <h2 class="text-2xl font-bold mb-6 flex items-center gap-2 border-b-2 border-cyan-900 pb-2 text-crafto-dark">
+                    <span>📜</span> Terms of Service
+                </h2>
+                <ul class="space-y-4">
+                    <li class="card-dark p-4 rounded-2xl shadow-sm border border-[#2a2a3f]">
+                        <strong class="text-cyan-400 block mb-1">No Free Requests</strong>
+                        All projects are paid, I'd love to do it but I don't have spare time to accept free requests.
+                    </li>
+                    <li class="card-dark p-4 rounded-2xl shadow-sm border border-[#2a2a3f]">
+                        <strong class="text-cyan-400 block mb-1">Original Concepts Only</strong>
+                        Do not ask me to copy other creators' work or specific packs. Please describe your own ideas!
+                    </li>
+                    <li class="card-dark p-4 rounded-2xl shadow-sm border border-[#2a2a3f]">
+                        <strong class="text-cyan-400 block mb-1">No Sales of Existing Assets</strong>
+                        Pre-existing Silly Moves and mod animations are not for sale to avoid leaking unreleased content.
+                    </li>
+                    <li class="card-dark p-4 rounded-2xl shadow-sm border border-[#2a2a3f]">
+                        <strong class="text-cyan-400 block mb-1">Usage Rights</strong>
+                        Custom animations delivered to you cannot be resold or redistributed.
+                    </li>
+                    <li class="card-dark p-4 rounded-2xl shadow-sm border border-[#2a2a3f]">
+                        <strong class="text-cyan-400 block mb-1">Please be patient</strong>
+                        I'm a student and English is not my main language. ❤️
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 px-4 bg-[#0a0a14] text-white rounded-t-[3rem] mt-8 border-t border-[#1e1e2f]">
+        <div class="max-w-4xl mx-auto text-center">
+            
+            <h2 class="text-3xl font-bold mb-8 flex items-center justify-center gap-2 text-crafto-dark">
+                <span>🐏</span> Let's Work Together!
+            </h2>
+            
+            <p class="mb-8 text-crafto-muted">Ready to get your animations done? Contact me below.</p>
+            
+            <!-- Botões de Contato -->
+            <div class="flex flex-col md:flex-row justify-center gap-4 mb-12">
+                <!-- Discord -->
+                <a href="https://discord.gg/F5eG4HNkBb" target="_blank" class="bg-[#5865F2] hover:bg-[#4752C4] hover:scale-105 transform transition-all text-white px-6 py-3 rounded-2xl font-bold flex items-center justify-center gap-3 shadow-lg shadow-cyan-900/20">
+                    <i class="fab fa-discord text-xl"></i> @craftandoof
+                </a>
+                <!-- Email -->
+                <a href="mailto:sleepycrafto.business@yahoo.com" class="bg-white/10 hover:bg-white/20 hover:scale-105 transform transition-all text-white px-6 py-3 rounded-2xl font-bold flex items-center justify-center gap-3 border border-white/10 shadow-lg shadow-cyan-900/20">
+                    <i class="fas fa-envelope text-xl text-cyan-400"></i> sleepycrafto.business@yahoo.com
+                </a>
+            </div>
+
+            <!-- Botões de Pagamento -->
+            <div class="border-t border-[#1e1e2f] pt-8 mt-8">
+                <h3 class="text-xl font-bold mb-6 flex items-center justify-center gap-2 text-crafto-dark">
+                    <span>💳</span> Payment Methods
+                </h3>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <!-- Ko-Fi -->
+                    <a href="https://ko-fi.com/craftandoof" target="_blank" class="bg-[#13C3FF] hover:bg-[#00AEEA] hover:scale-105 transform transition-all text-[#0f0f1a] px-8 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-cyan-900/20">
+                        <img src="https://storage.ko-fi.com/cdn/cuplogo-sm.png" alt="Ko-fi" class="h-4"> Ko-fi
+                    </a>
+                    
+                    <!-- PayPal Key -->
+                    <div class="bg-white/10 text-white px-6 py-3 rounded-xl font-bold flex items-center gap-3 border border-white/10 shadow-lg shadow-cyan-900/20 select-all cursor-text" title="Selecione e copie a chave!">
+                        <i class="fab fa-paypal text-cyan-300 text-xl"></i> sleepycrafto.business@yahoo.com
+                    </div>
+                </div>
+                <p class="text-sm text-crafto-muted mt-4 max-w-md mx-auto">
+                    Payment is received from Ko-Fi as a donation.
+                </p>
+            </div>
+
+            <div class="mt-16 text-sm text-crafto-muted font-medium">
+                © Craftandoof's Portfolio. Crafted with ❤️
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 🛠️ COMO ADICIONAR NOVOS TRABALHOS 🛠️
+        // Para adicionar uma nova animação, basta copiar um dos blocos { ... },
+        // colar logo depois da vírgula do último, e alterar os textos e o link!
+        
+        const meusPortfolios = [
+            {
+                nome: "EMF & ETF: Silly Moves",
+                descricao: "Silly Moves: Recode",
+                imagem: "https://placehold.co/600x400/06b6d4/FFFFFF?text=Silly+Moves+GIF"
+            },
+            {
+                nome: "Punchy: Silly Punchies",
+                descricao: "Official Mod Wake Up Animation",
+                imagem: "https://placehold.co/600x400/3b82f6/FFFFFF?text=Punchies+GIF"
+            },
+            {
+                nome: "CPM: Silly Moves",
+                descricao: "Versions (v0.1 – v0.3)",
+                imagem: "https://placehold.co/600x400/0083B0/FFFFFF?text=CPM+GIF"
+            }
+        ];
+
+        const grid = document.getElementById('portfolio-grid');
+        
+        meusPortfolios.forEach(projeto => {
+            const card = document.createElement('div');
+            card.className = "card-dark rounded-3xl p-4 shadow-sm border border-[#2a2a3f] card-hover group";
+            
+            card.innerHTML = `
+                <div class="w-full h-48 bg-gradient-to-t from-blue-900/30 to-cyan-900/30 rounded-2xl mb-4 flex items-center justify-center overflow-hidden relative border border-[#2a2a3f]">
+                    <img src="${projeto.imagem}" alt="${projeto.nome}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <h3 class="font-bold text-xl mb-1 text-white">${projeto.nome}</h3>
+                <p class="text-sm text-crafto-muted">${projeto.descricao}</p>
+            `;
+            
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+</html>
