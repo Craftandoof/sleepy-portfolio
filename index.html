@@ -7,9 +7,9 @@
 <meta name="description" content="Sleepy Crafto (@craftandoof): animações bobas e fluidas para Minecraft. Baixe o Fluid & Foolish, peça uma comissão ou entre no Discord. :3">
 <meta name="theme-color" content="#FEC981">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Sleepy Crafto — animo coisas bobas">
-<meta property="og:description" content="Criador do Fluid & Foolish, resource pack de animações para Minecraft com mais de 2 milhões de downloads.">
-<!-- Depois de hospedar a página, adicione: <meta property="og:image" content="URL-ABSOLUTA-DA-IMAGEM"> -->
+<meta property="og:title" content="Craftandoof's Portfolio">
+<meta property="og:description" content="Criador do Fluid & Foolish, resource pack de animações para Minecraft com mais de 150 mil downloads.">
+<!-- Depois de hospedar a página, adicione: <meta property="og:image" content="URL-ABSOLUTA-DA-IMAGEM"> --> <meta property="og:image" content="https://raw.githubusercontent.com/Craftandoof/sleepy-portfolio/c20586f7fd3e43cf0b667434d6be6a2bd4fbd6a7/assets/cabeca.png">
 <link rel="icon" href="assets/cabeca.png" type="image/png">
 <script>document.documentElement.classList.add('js')</script>
 
@@ -123,14 +123,26 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
    ========================================================= */
 .top{position:sticky;top:0;z-index:50;background:rgba(255,240,218,.95);border-bottom:3px solid var(--ink)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:62px}
+.top__r{display:flex;align-items:center;gap:10px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:900;font-size:1.05rem}
 .brand img{width:38px;height:38px;border:3px solid var(--ink);border-radius:10px;transition:transform var(--t-med) var(--bounce)}
 @media (hover:hover){.brand:hover img{transform:rotate(-8deg) scale(1.1)}}
+@media (max-width:429px){.top .brand span{display:none}}
 .nav{display:none;gap:22px;font-weight:800}
 .nav a{position:relative;text-decoration:none;padding:6px 0}
 .nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform var(--t-med) var(--ease)}
 .nav a:hover::after,.nav a:focus-visible::after{transform:scaleX(1)}
 @media (min-width:760px){.nav{display:flex}}
+
+/* seletor de idioma (select nativo: leve, acessível e ótimo no celular) */
+.lang{
+  -webkit-appearance:none;appearance:none;font:inherit;font-weight:900;font-size:.85rem;color:var(--ink);cursor:pointer;
+  background:var(--cream) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%233A1A1C' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 9px center/11px;
+  border:3px solid var(--ink);border-radius:12px;padding:6px 28px 6px 11px;height:40px;
+  transition:transform var(--t-med) var(--bounce);
+}
+@media (hover:hover){.lang:hover{transform:translateY(-2px)}}
+.lang:active{transform:scale(.96)}
 
 /* =========================================================
    HERO
@@ -144,8 +156,10 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
 .ph{position:absolute;inset:0;display:grid;place-items:center;padding:12px;text-align:center;font-size:.72rem;font-weight:800;line-height:1.3;color:var(--brown-7)}
 .hero__shadow{position:absolute;left:14%;right:14%;bottom:-18px;height:12px;border-radius:50%;background:var(--ink);opacity:.2}
 
-.hero h1{font-size:clamp(2.25rem,9.5vw,4.4rem);text-shadow:0 3px 0 rgba(255,255,255,.5)}
-.hl{background:linear-gradient(transparent 58%,var(--gold) 58%);padding:0 .08em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* título: sem quebra forçada, linhas equilibradas e palavras-chave nunca partidas */
+.hero h1{font-size:clamp(2rem,8.8vw,4.4rem);text-shadow:0 3px 0 rgba(255,255,255,.5);text-wrap:balance}
+.hl{white-space:nowrap;background:linear-gradient(transparent 58%,var(--gold) 58%);padding:0 .08em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.wob{display:inline-block;white-space:nowrap}
 .wob span{display:inline-block;animation:letter .8s var(--ease) both;animation-delay:calc(1.1s + var(--k)*55ms);animation-fill-mode:none}
 .hero__sub{margin-top:14px;font-size:1.12rem;max-width:34em}
 .hero__cta{display:grid;gap:12px;margin-top:22px;justify-items:stretch}
@@ -386,7 +400,7 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
 </head>
 
 <body>
-<a class="skip" href="#projetos">Pular para o conteúdo</a>
+<a class="skip" href="#projetos" data-i="skip">Pular para o conteúdo</a>
 
 <!-- Ícones (inline, leves e reutilizáveis) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -407,22 +421,31 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
      ========================================================= -->
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#topo" aria-label="Sleepy Crafto — voltar ao topo">
+    <a class="brand" href="#topo" aria-label="Sleepy Crafto — voltar ao topo" data-i-aria="brandAria">
       <img src="assets/cabeca.png" alt="" width="38" height="38" decoding="async" onerror="this.style.visibility='hidden'">
       <span>Sleepy Crafto</span>
     </a>
-    <nav class="nav" aria-label="Seções">
-      <a href="#projetos">Projetos</a>
-      <a href="#sobre">Sobre</a>
-      <a href="#comissoes">Comissões</a>
-      <a href="#apoio">Apoio</a>
-      <a href="#contato">Contato</a>
+    <nav class="nav" aria-label="Seções" data-i-aria="navAria">
+      <a href="#projetos" data-i="nProj">Projetos</a>
+      <a href="#sobre" data-i="nAbout">Sobre</a>
+      <a href="#comissoes" data-i="nComm">Comissões</a>
+      <a href="#apoio" data-i="nSup">Apoio</a>
+      <a href="#contato" data-i="nCont">Contato</a>
     </nav>
-    <!-- CTA PRIMÁRIO (versão compacta) -->
-    <!-- TROQUE o href abaixo se o endereço do Modrinth mudar -->
-    <a class="btn btn--primary btn--sm" href="https://modrinth.com/resourcepack/fluid-foolish" target="_blank" rel="noopener">
-      <span class="btn__face"><svg class="i"><use href="#i-down"/></svg>Baixar</span>
-    </a>
+    <div class="top__r">
+      <!-- Idioma: detectado pelo navegador; a escolha da pessoa fica salva -->
+      <select class="lang" id="lang" aria-label="Idioma / Language" title="Idioma / Language">
+        <option value="pt">PT</option>
+        <option value="en">EN</option>
+        <option value="es">ES</option>
+        <option value="ru">RU</option>
+      </select>
+      <!-- CTA PRIMÁRIO (versão compacta) -->
+      <!-- TROQUE o href abaixo se o endereço do Modrinth mudar -->
+      <a class="btn btn--primary btn--sm" href="https://modrinth.com/resourcepack/fluid-foolish" target="_blank" rel="noopener">
+        <span class="btn__face"><svg class="i"><use href="#i-down"/></svg><span data-i="dl">Baixar</span></span>
+      </a>
+    </div>
   </div>
 </header>
 
@@ -440,12 +463,10 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
 
   <div class="wrap hero__grid">
     <div class="hero__text">
-      <p class="kicker pop" style="--i:1">@craftandoof · animador de coisas bobas</p>
-      <h1 id="h-hero" class="pop" style="--i:2">
-        Eu animo <span class="hl">coisas bobas</span><br>
-        e <span class="wob" aria-label="fluidas"><span aria-hidden="true" style="--k:0">f</span><span aria-hidden="true" style="--k:1">l</span><span aria-hidden="true" style="--k:2">u</span><span aria-hidden="true" style="--k:3">i</span><span aria-hidden="true" style="--k:4">d</span><span aria-hidden="true" style="--k:5">a</span><span aria-hidden="true" style="--k:6">s</span></span> :3
-      </h1>
-      <p class="hero__sub pop" style="--i:3">
+      <p class="kicker pop" style="--i:1" data-i="kHero">@craftandoof · animador de coisas bobas</p>
+      <!-- as letras de .wob são separadas pelo JS (para o pulinho); sem quebra forçada -->
+      <h1 id="h-hero" class="pop" style="--i:2"><span data-i="h1a">Eu animo <span class="hl">coisas bobas</span></span> <span data-i="h1b">e <span class="wob">fluidas</span> :3</span></h1>
+      <p class="hero__sub pop" style="--i:3" data-i="heroSub">
         Oi, eu sou o <strong>Sleepy Crafto</strong>! Faço animações pra Minecraft no Blockbench e estou aprendendo Blender!
         Meu projeto principal é o <strong>Fluid &amp; Foolish</strong>, um resource pack com mais de 150 mil downloads.
       </p>
@@ -456,18 +477,18 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
            TERCIÁRIO  → Ver o trailer (link sublinhado) -->
       <div class="hero__cta pop" style="--i:4">
         <a class="btn btn--primary btn--lg" href="https://modrinth.com/resourcepack/fluid-foolish" target="_blank" rel="noopener">
-          <span class="btn__face"><svg class="i"><use href="#i-down"/></svg>Baixar Fluid &amp; Foolish</span>
+          <span class="btn__face"><svg class="i"><use href="#i-down"/></svg><span data-i="ctaDl">Baixar Fluid &amp; Foolish</span></span>
         </a>
         <a class="btn btn--secondary" href="https://discord.gg/F5eG4HNkBb" target="_blank" rel="noopener">
-          <span class="btn__face"><svg class="i"><use href="#i-chat"/></svg>Entrar no Discord</span>
+          <span class="btn__face"><svg class="i"><use href="#i-chat"/></svg><span data-i="ctaDc">Entrar no Discord</span></span>
         </a>
-        <a class="link" href="#trailer"><svg class="i"><use href="#i-play"/></svg>Ver o trailer</a>
+        <a class="link" href="#trailer"><svg class="i"><use href="#i-play"/></svg><span data-i="ctaTr">Ver o trailer</span></a>
       </div>
 
       <ul class="stats pop" style="--i:5" role="list">
-        <li><strong>150k+</strong><span>downloads</span></li>
-        <li><strong>52</strong><span>seguidores</span></li>
-        <li><strong>4</strong><span>versões Java</span></li>
+        <li><strong>150k+</strong><span data-i="stDl">downloads</span></li>
+        <li><strong>52</strong><span data-i="stFol">seguidores</span></li>
+        <li><strong>4</strong><span data-i="stVer">versões Java</span></li>
       </ul>
     </div>
 
@@ -475,7 +496,7 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
       <div class="hero__head">
         <div class="sticker">
           <div class="ph" aria-hidden="true">Ícone da cabeça<br>assets/cabeca.png</div>
-          <img src="assets/cabeca.png" alt="Ícone do Sleepy Crafto: uma cabeça de personagem em pixel art com um boné marrom" width="1080" height="1080" decoding="async" fetchpriority="high" onerror="this.remove()">
+          <img src="assets/cabeca.png" alt="Ícone do Sleepy Crafto: uma cabeça de personagem em pixel art com um boné marrom" data-i-alt="altHead" width="1080" height="1080" decoding="async" fetchpriority="high" onerror="this.remove()">
         </div>
       </div>
       <div class="hero__shadow" aria-hidden="true"></div>
@@ -491,9 +512,9 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
 <section class="sec" id="projetos" data-live aria-labelledby="h-proj">
   <div class="wrap">
     <header class="sec__head reveal">
-      <p class="kicker">Projetos</p>
-      <h2 id="h-proj">Projetos que Trabalhei</h2>
-      <p class="lead">Tudo que eu animo mora aqui. Baixa, testa e me conta no Discord o que achou!</p>
+      <p class="kicker" data-i="nProj">Projetos</p>
+      <h2 id="h-proj" data-i="projH2">Projetos que Trabalhei</h2>
+      <p class="lead" data-i="projLead">Tudo que eu animo mora aqui. Baixa, testa e me conta no Discord o que achou!</p>
     </header>
 
     <!-- ---------- Fluid & Foolish ---------- -->
@@ -502,16 +523,16 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
       <div class="box__b feature__in">
         <figure class="media">
           <div class="ph" aria-hidden="true">Ícone da capivara<br>assets/fluid-and-foolish.png</div>
-          <img src="assets/fluid-and-foolish.png" alt="Ícone do Fluid & Foolish: uma capivara em pixel art boiando na água, com o nome do pack no topo" width="1080" height="1080" loading="lazy" decoding="async" onerror="this.remove()">
+          <img src="assets/fluid-and-foolish.png" alt="Ícone do Fluid & Foolish: uma capivara em pixel art boiando na água, com o nome do pack no topo" data-i-alt="altFF" width="1080" height="1080" loading="lazy" decoding="async" onerror="this.remove()">
           <!-- PREVIEW ANIMADO: troque a <img> acima por um vídeo curto em loop (leve!):
           <video src="assets/ff-preview.webm" poster="assets/fluid-and-foolish.png" autoplay muted loop playsinline preload="none"></video> -->
         </figure>
 
         <div>
-          <p class="badge"><span class="dot"></span>Em desenvolvimento ativo</p>
+          <p class="badge"><span class="dot"></span><span data-i="badge">Em desenvolvimento ativo</span></p>
           <h3 id="h-ff">Fluid &amp; Foolish</h3>
           <p class="tagline">Move fluidly, act foolish! :D</p>
-          <p class="desc">
+          <p class="desc" data-i="ffDesc">
             O <strong>Silly Moves</strong> voltou com visual novo! É um resource pack de animações pra Minecraft Java que reformula cada ação do seu personagem, movido a <strong>Punchy! Moves</strong>.
             Ainda é um trabalho em progresso, então o seu feedback no Discord ajuda a moldar o que vem a seguir.
           </p>
@@ -522,44 +543,44 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
 
           <dl class="meta">
             <div><dt>Minecraft Java</dt><dd>26.3 · 1.21.11 · 1.21.1 · 1.20.1</dd></div>
-            <div><dt>Licença</dt><dd>ARR (All Rights Reserved)</dd></div>
-            <div><dt>Números</dt><dd>150k downloads · 52 seguidores</dd></div>
+            <div><dt data-i="mLic">Licença</dt><dd>ARR (All Rights Reserved)</dd></div>
+            <div><dt data-i="mNum">Números</dt><dd data-i="mNumV">150k downloads · 52 seguidores</dd></div>
           </dl>
 
-          <h4>Um monte de movimento, em seis categorias</h4>
+          <h4 data-i="h4Moves">Um monte de movimento, em seis categorias</h4>
           <ul class="moves" data-live>
-            <li class="mv mv--idle"><div class="mv__stage"><span class="mv__fx"></span></div><strong>Idle &amp; Camera</strong><small>Idle, ações aleatórias e por bioma, câmera</small></li>
-            <li class="mv mv--loco"><div class="mv__stage"><span class="mv__fx"></span></div><strong>Locomotion</strong><small>Andar, trotar, correr, strafe</small></li>
-            <li class="mv mv--air"><div class="mv__stage"><span class="mv__fx"></span></div><strong>Airborne</strong><small>Pulo, queda, mergulho, mace</small></li>
-            <li class="mv mv--fly"><div class="mv__stage"><span class="mv__fx"></span></div><strong>Flight</strong><small>Voo criativo e elytra</small></li>
-            <li class="mv mv--water"><div class="mv__stage"><span class="mv__fx"></span></div><strong>Water</strong><small>Nadar, mergulhar, boiar</small></li>
-            <li class="mv mv--act"><div class="mv__stage"><span class="mv__fx"></span></div><strong>Actions</strong><small>Arco, balde de axolote e mais</small></li>
+            <li class="mv mv--idle"><div class="mv__stage"><span class="mv__fx"></span></div><strong>Idle &amp; Camera</strong><small data-i="mvIdle">Idle, ações aleatórias e por bioma, câmera</small></li>
+            <li class="mv mv--loco"><div class="mv__stage"><span class="mv__fx"></span></div><strong>Locomotion</strong><small data-i="mvLoco">Andar, trotar, correr, strafe</small></li>
+            <li class="mv mv--air"><div class="mv__stage"><span class="mv__fx"></span></div><strong>Airborne</strong><small data-i="mvAir">Pulo, queda, mergulho, mace</small></li>
+            <li class="mv mv--fly"><div class="mv__stage"><span class="mv__fx"></span></div><strong>Flight</strong><small data-i="mvFly">Voo criativo e elytra</small></li>
+            <li class="mv mv--water"><div class="mv__stage"><span class="mv__fx"></span></div><strong>Water</strong><small data-i="mvWater">Nadar, mergulhar, boiar</small></li>
+            <li class="mv mv--act"><div class="mv__stage"><span class="mv__fx"></span></div><strong>Actions</strong><small data-i="mvAct">Arco, balde de axolote e mais</small></li>
           </ul>
 
-          <p class="shout">Já rolou shoutout em vídeo de <strong>Enderverse</strong> e <strong>Demonjoe</strong>. Valeu demais!</p>
+          <p class="shout" data-i="shout">Já rolou shoutout em vídeo de <strong>Enderverse</strong> e <strong>Demonjoe</strong>. Valeu demais!</p>
 
           <!-- CTA PRIMÁRIO repetido no card; terciário: trailer -->
           <div class="cta-row">
             <a class="btn btn--primary" href="https://modrinth.com/resourcepack/fluid-foolish" target="_blank" rel="noopener">
-              <span class="btn__face"><svg class="i"><use href="#i-down"/></svg>Baixar no Modrinth</span>
+              <span class="btn__face"><svg class="i"><use href="#i-down"/></svg><span data-i="ctaMr">Baixar no Modrinth</span></span>
             </a>
             <a class="btn btn--secondary" href="https://discord.gg/F5eG4HNkBb" target="_blank" rel="noopener">
-              <span class="btn__face"><svg class="i"><use href="#i-chat"/></svg>Dar feedback</span>
+              <span class="btn__face"><svg class="i"><use href="#i-chat"/></svg><span data-i="ctaFb">Dar feedback</span></span>
             </a>
-            <a class="link" href="#trailer"><svg class="i"><use href="#i-play"/></svg>Trailer</a>
+            <a class="link" href="#trailer"><svg class="i"><use href="#i-play"/></svg><span data-i="lkTr">Trailer</span></a>
           </div>
-          <p class="fine">Movido a Punchy! Moves. <a class="link" style="font-size:inherit" href="https://modrinth.com/project/mzgtK8pY" target="_blank" rel="noopener">Ver o mod no Modrinth<svg class="i"><use href="#i-arrow"/></svg></a></p>
+          <p class="fine"><span data-i="fineP">Movido a Punchy! Moves.</span> <a class="link" style="font-size:inherit" href="https://modrinth.com/project/mzgtK8pY" target="_blank" rel="noopener"><span data-i="fineL">Ver o mod no Modrinth</span><svg class="i"><use href="#i-arrow"/></svg></a></p>
         </div>
       </div>
     </article>
 
     <!-- ---------- Trailer (carrega o player só no clique = leve em 3G) ---------- -->
     <div class="trailer reveal" id="trailer" data-live>
-      <h3>Trailer</h3>
-      <a class="yt" href="https://youtu.be/1Vj2Ty_shvs" data-yt="1Vj2Ty_shvs" target="_blank" rel="noopener" aria-label="Assistir ao trailer do Fluid & Foolish no YouTube">
-        <img src="https://i.ytimg.com/vi/1Vj2Ty_shvs/hqdefault.jpg" alt="Miniatura do trailer do Fluid & Foolish" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()">
+      <h3 data-i="lkTr">Trailer</h3>
+      <a class="yt" href="https://youtu.be/1Vj2Ty_shvs" data-yt="1Vj2Ty_shvs" target="_blank" rel="noopener" aria-label="Assistir ao trailer do Fluid & Foolish no YouTube" data-i-aria="trAria">
+        <img src="https://i.ytimg.com/vi/1Vj2Ty_shvs/hqdefault.jpg" alt="Miniatura do trailer do Fluid & Foolish" data-i-alt="trAlt" width="480" height="360" loading="lazy" decoding="async" onerror="this.remove()">
         <span class="yt__play" aria-hidden="true"><svg class="i"><use href="#i-play"/></svg></span>
-        <span class="yt__label">Assistir ao trailer</span>
+        <span class="yt__label" data-i="trLbl">Assistir ao trailer</span>
       </a>
     </div>
 
@@ -570,13 +591,13 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
         <div class="box__b mini__in">
           <figure class="media">
             <div class="ph" aria-hidden="true">Ícone da mão<br>assets/silly-punchies.png</div>
-            <img src="assets/silly-punchies.png" alt="Ícone do Silly Punchies: a palavra PUNCHY! dourada em pixel art sobre um fundo laranja" width="1080" height="1080" loading="lazy" decoding="async" onerror="this.remove()">
+            <img src="assets/silly-punchies.png" alt="Ícone do Silly Punchies: a palavra PUNCHY! dourada em pixel art sobre um fundo laranja" data-i-alt="altSP" width="1080" height="1080" loading="lazy" decoding="async" onerror="this.remove()">
           </figure>
           <div>
-            <span class="tag-soon">Em breve</span>
+            <span class="tag-soon" data-i="soon">Em breve</span>
             <h3 id="h-sp">Silly Punchies</h3>
-            <p>Fluid and Foolish, só que em primeira pessoa :3.</p>
-            <a class="link" href="https://discord.gg/F5eG4HNkBb" target="_blank" rel="noopener">Acompanhar no Discord<svg class="i"><use href="#i-arrow"/></svg></a>
+            <p data-i="spP">Fluid and Foolish, só que em primeira pessoa :3.</p>
+            <a class="link" href="https://discord.gg/F5eG4HNkBb" target="_blank" rel="noopener"><span data-i="spL">Acompanhar no Discord</span><svg class="i"><use href="#i-arrow"/></svg></a>
           </div>
         </div>
       </article>
@@ -586,8 +607,8 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
         <div class="box__b mini__in">
           <div class="qblock" aria-hidden="true"><span>?</span></div>
           <div>
-            <h3 id="h-mais">Tem mais vindo</h3>
-            <p>Conforme eu for terminando coisas novas (e aprendendo Blender), elas vão aparecendo aqui.</p>
+            <h3 id="h-mais" data-i="moreH">Tem mais vindo</h3>
+            <p data-i="moreP">Conforme eu for terminando coisas novas (e aprendendo Blender), elas vão aparecendo aqui.</p>
           </div>
         </div>
       </article>
@@ -603,21 +624,21 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
     <div class="about__art reveal">
       <div class="sticker">
         <div class="ph" aria-hidden="true">assets/cabeca.png</div>
-        <img src="assets/cabeca.png" alt="Ícone do Sleepy Crafto" width="1080" height="1080" loading="lazy" decoding="async" onerror="this.remove()">
+        <img src="assets/cabeca.png" alt="Ícone do Sleepy Crafto" data-i-alt="altAbout" width="1080" height="1080" loading="lazy" decoding="async" onerror="this.remove()">
       </div>
       <span class="bubble" aria-hidden="true">America Ya! :3</span>
     </div>
 
     <div class="reveal" style="--i:1">
-      <p class="kicker">Sobre</p>
-      <h2 id="h-sobre">Oi, eu sou o Sleepy Crafto!</h2>
-      <p>Crio animações no <strong>Blockbench</strong>: todas com um tom bobo cheio de personalidade. Agora estou aprendendo <strong>Blender</strong>, então espere um up nas minhas animações logo logo :3.</p>
-      <p>Sou fundador e animador do <strong>Fluid &amp; Foolish</strong>, um pack público pro Minecraft Java. A ideia é simples: se mexer bem já é bom, então por quê não se mexer com vida? :D</p>
+      <p class="kicker" data-i="nAbout">Sobre</p>
+      <h2 id="h-sobre" data-i="aboutH2">Oi, eu sou o Sleepy Crafto!</h2>
+      <p data-i="aboutP1">Crio animações no <strong>Blockbench</strong>: todas com um tom bobo cheio de personalidade. Agora estou aprendendo <strong>Blender</strong>, então espere um up nas minhas animações logo logo :3.</p>
+      <p data-i="aboutP2">Sou fundador e animador do <strong>Fluid &amp; Foolish</strong>, um pack público pro Minecraft Java. A ideia é simples: se mexer bem já é bom, então por quê não se mexer com vida? :D</p>
       <ul class="facts">
-        <li><strong>Ferramentas</strong><span>Blockbench · Blender</span></li>
-        <li><strong>Especialidade</strong><span>Animações</span></li>
-        <li><strong>Projeto principal</strong><span>Fluid &amp; Foolish</span></li>
-        <li><strong>Onde me achar</strong><span>Discord e YouTube (@craftandoof)</span></li>
+        <li><strong data-i="fTool">Ferramentas</strong><span>Blockbench · Blender</span></li>
+        <li><strong data-i="fSpec">Especialidade</strong><span data-i="fSpecV">Animações</span></li>
+        <li><strong data-i="fMain">Projeto principal</strong><span>Fluid &amp; Foolish</span></li>
+        <li><strong data-i="fFind">Onde me achar</strong><span data-i="fFindV">Discord e YouTube (@craftandoof)</span></li>
       </ul>
     </div>
   </div>
@@ -631,8 +652,8 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
 <section class="sec" id="comissoes" data-live data-commissions="open" aria-labelledby="h-comm">
   <div class="wrap">
     <header class="sec__head reveal">
-      <p class="kicker">Comissões</p>
-      <h2 id="h-comm">Quer algo animado do seu jeito?</h2>
+      <p class="kicker" data-i="nComm">Comissões</p>
+      <h2 id="h-comm" data-i="commH2">Quer algo animado do seu jeito?</h2>
     </header>
 
     <div class="box comm reveal">
@@ -640,40 +661,40 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
       <div class="box__b comm__in">
         <div>
           <p class="status"><span class="dot"></span>
-            <span class="when-open">Comissões abertas</span>
-            <span class="when-closed">Comissões fechadas</span>
+            <span class="when-open" data-i="stOpen">Comissões abertas</span>
+            <span class="when-closed" data-i="stClosed">Comissões fechadas</span>
           </p>
 
-          <h3 class="when-open">Tô de portas abertas! :D</h3>
-          <h3 class="when-closed">Fechadas por enquanto…</h3>
+          <h3 class="when-open" data-i="cOpenH">Tô de portas abertas! :D</h3>
+          <h3 class="when-closed" data-i="cClosedH">Fechadas por enquanto…</h3>
 
-          <p class="when-open">Tem uma ideia boba (ou séria) pra animar? Chama no Discord e conta tudo!</p>
-          <p class="when-closed">Entra no Discord que eu aviso por lá quando as vagas voltarem a abrir.</p>
+          <p class="when-open" data-i="cOpenP">Tem uma ideia boba (ou séria) pra animar? Chama no Discord e conta tudo!</p>
+          <p class="when-closed" data-i="cClosedP">Entra no Discord que eu aviso por lá quando as vagas voltarem a abrir.</p>
 
           <ul class="comm__scope">
-            <li><svg class="i"><use href="#i-check"/></svg><span>Animações feitas no Blockbench: mobs, itens, personagens e ciclos de movimento.</span></li>
-            <li><svg class="i"><use href="#i-check"/></svg><span>Valor e prazo combinados caso a caso, depois de entender o que você precisa.</span></li>
-            <li><svg class="i"><use href="#i-pen"/></svg><span>Blender ainda está no forno, então por enquanto é só Blockbench.</span></li>
+            <li><svg class="i"><use href="#i-check"/></svg><span data-i="sc1">Animações feitas no Blockbench: mobs, itens, personagens e ciclos de movimento.</span></li>
+            <li><svg class="i"><use href="#i-check"/></svg><span data-i="sc2">Valor e prazo combinados caso a caso, depois de entender o que você precisa.</span></li>
+            <li><svg class="i"><use href="#i-pen"/></svg><span data-i="sc3">Blender ainda está no forno, então por enquanto é só Blockbench.</span></li>
           </ul>
 
           <!-- CTA SECUNDÁRIO desta seção -->
           <div class="cta-row">
             <a class="btn btn--secondary btn--lg when-open" href="https://discord.gg/F5eG4HNkBb" target="_blank" rel="noopener">
-              <span class="btn__face"><svg class="i"><use href="#i-pen"/></svg>Pedir comissão no Discord</span>
+              <span class="btn__face"><svg class="i"><use href="#i-pen"/></svg><span data-i="btnComm">Pedir comissão no Discord</span></span>
             </a>
             <a class="btn btn--outline btn--lg when-closed" href="https://discord.gg/F5eG4HNkBb" target="_blank" rel="noopener">
-              <span class="btn__face"><svg class="i"><use href="#i-chat"/></svg>Avisem quando abrir</span>
+              <span class="btn__face"><svg class="i"><use href="#i-chat"/></svg><span data-i="btnNotify">Avisem quando abrir</span></span>
             </a>
           </div>
         </div>
 
         <div>
-          <h3 style="font-size:1.4rem;margin-bottom:14px">Como funciona</h3>
+          <h3 style="font-size:1.4rem;margin-bottom:14px" data-i="howH">Como funciona</h3>
           <ol class="steps">
-            <li><div><strong>Conta a ideia</strong><p>Chama no Discord com o que você imagina: referência, modelo e onde vai usar.</p></div></li>
-            <li><div><strong>A gente combina</strong><p>Eu digo se encaixa e combinamos escopo, prazo e valor antes de começar.</p></div></li>
-            <li><div><strong>Eu animo</strong><p>Vou mostrando prévias pelo caminho pra você ajustar o que quiser.</p></div></li>
-            <li><div><strong>Entrega</strong><p>Arquivo final pronto pra usar. Simples assim!</p></div></li>
+            <li><div><strong data-i="s1t">Conta a ideia</strong><p data-i="s1p">Chama no Discord com o que você imagina: referência, modelo e onde vai usar.</p></div></li>
+            <li><div><strong data-i="s2t">A gente combina</strong><p data-i="s2p">Eu digo se encaixa e combinamos escopo, prazo e valor antes de começar.</p></div></li>
+            <li><div><strong data-i="s3t">Eu animo</strong><p data-i="s3p">Vou mostrando prévias pelo caminho pra você ajustar o que quiser.</p></div></li>
+            <li><div><strong data-i="s4t">Entrega</strong><p data-i="s4p">Arquivo final pronto pra usar. Simples assim!</p></div></li>
           </ol>
         </div>
       </div>
@@ -700,13 +721,13 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
           <path d="M32 52v10" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".75"/>
         </svg>
         <div>
-          <p class="kicker">Apoio</p>
-          <h2 id="h-apoio">Quer ajudar o caos a continuar? :3</h2>
-          <p style="margin-top:12px">Fluid &amp; Foolish é grátis pra baixar! Se ele deixou seu jogo mais divertido e você quiser ajudar a manter as atualizações (e nosso cafézin animado), o Ko-fi está aí. Nada é obrigatório: um download, um oi no Discord ou um compartilhamento já ajudam muito!</p>
+          <p class="kicker" data-i="nSup">Apoio</p>
+          <h2 id="h-apoio" data-i="kofiH">Quer ajudar o caos a continuar? :3</h2>
+          <p style="margin-top:12px" data-i="kofiP">Fluid &amp; Foolish é grátis pra baixar! Se ele deixou seu jogo mais divertido e você quiser ajudar a manter as atualizações (e nosso cafézin animado), o Ko-fi está aí. Nada é obrigatório: um download, um oi no Discord ou um compartilhamento já ajudam muito!</p>
           <div class="cta-row">
             <!-- CTA TERCIÁRIO em formato de botão (contorno) -->
             <a class="btn btn--outline btn--lg" href="https://ko-fi.com/craftandoof" target="_blank" rel="noopener">
-              <span class="btn__face"><svg class="i"><use href="#i-cup"/></svg>Apoiar no Ko-fi</span>
+              <span class="btn__face"><svg class="i"><use href="#i-cup"/></svg><span data-i="kofiB">Apoiar no Ko-fi</span></span>
             </a>
           </div>
         </div>
@@ -722,9 +743,9 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
 <section class="sec" id="contato" aria-labelledby="h-contato">
   <div class="wrap">
     <header class="sec__head reveal">
-      <p class="kicker">Contato</p>
-      <h2 id="h-contato">Vem trocar ideia!</h2>
-      <p class="lead">O Discord é o canal oficial pra tudo: dúvidas, feedback, comissões e novidades.</p>
+      <p class="kicker" data-i="nCont">Contato</p>
+      <h2 id="h-contato" data-i="ctH">Vem trocar ideia!</h2>
+      <p class="lead" data-i="ctLead">O Discord é o canal oficial pra tudo: dúvidas, feedback, comissões e novidades.</p>
     </header>
 
     <ul class="tiles">
@@ -733,7 +754,7 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
           <div class="box__s"></div>
           <div class="box__b tile__in">
             <span class="tile__ic"><svg class="i"><use href="#i-chat"/></svg></span>
-            <span><strong>Discord</strong><span class="sub">Comunidade, feedback e comissões</span></span>
+            <span><strong>Discord</strong><span class="sub" data-i="tDc">Comunidade, feedback e comissões</span></span>
             <svg class="i tile__go"><use href="#i-arrow"/></svg>
           </div>
         </a>
@@ -753,7 +774,7 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
           <div class="box__s"></div>
           <div class="box__b tile__in">
             <span class="tile__ic"><svg class="i"><use href="#i-box"/></svg></span>
-            <span><strong>Modrinth</strong><span class="sub">Baixar o Fluid &amp; Foolish</span></span>
+            <span><strong>Modrinth</strong><span class="sub" data-i="tMr">Baixar o Fluid &amp; Foolish</span></span>
             <svg class="i tile__go"><use href="#i-arrow"/></svg>
           </div>
         </a>
@@ -763,7 +784,7 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
           <div class="box__s"></div>
           <div class="box__b tile__in">
             <span class="tile__ic"><svg class="i"><use href="#i-cup"/></svg></span>
-            <span><strong>Ko-fi</strong><span class="sub">Apoiar o trabalho</span></span>
+            <span><strong>Ko-fi</strong><span class="sub" data-i="tKf">Apoiar o trabalho</span></span>
             <svg class="i tile__go"><use href="#i-arrow"/></svg>
           </div>
         </a>
@@ -780,13 +801,13 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
 <div class="wave wave--foot" data-live aria-hidden="true"><div class="wave__t wave__t--b"></div><div class="wave__t wave__t--f"></div></div>
 <footer class="foot">
   <div class="wrap foot__in">
-    <a class="brand" href="#topo" aria-label="Voltar ao topo">
+    <a class="brand" href="#topo" aria-label="Voltar ao topo" data-i-aria="footTop">
       <img src="assets/cabeca.png" alt="" width="38" height="38" loading="lazy" decoding="async" onerror="this.style.visibility='hidden'">
       <span>Sleepy Crafto · @craftandoof</span>
     </a>
-    <p>Fluid &amp; Foolish é distribuído sob a licença ARR (All Rights Reserved). Não afiliado à Mojang nem à Microsoft. Minecraft é marca da Mojang AB.</p>
+    <p data-i="footL">Fluid &amp; Foolish é distribuído sob a licença ARR (All Rights Reserved). Não afiliado à Mojang nem à Microsoft. Minecraft é marca da Mojang AB.</p>
     <p>© <span id="ano">2026</span> Sleepy Crafto</p>
-    <a class="totop" href="#topo"><svg class="i"><use href="#i-up"/></svg>Voltar ao topo</a>
+    <a class="totop" href="#topo"><svg class="i"><use href="#i-up"/></svg><span data-i="footTop">Voltar ao topo</span></a>
   </div>
 </footer>
 
@@ -796,6 +817,245 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
   var rev=[].slice.call(d.querySelectorAll('.reveal'));
   var live=[].slice.call(d.querySelectorAll('[data-live]'));
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cur='pt';
+
+  /* =======================================================
+     IDIOMAS — o português é o texto que já está no HTML.
+     Para editar uma tradução, mexa só nos objetos abaixo.
+     Para traduzir um novo trecho: coloque data-i="chave" no elemento
+     e adicione "chave" em en, es e ru.
+     ======================================================= */
+  var I={
+    en:{
+      skip:"Skip to content",navAria:"Sections",brandAria:"Sleepy Crafto — back to top",
+      nProj:"Projects",nAbout:"About",nComm:"Commissions",nSup:"Support",nCont:"Contact",dl:"Download",
+      kHero:"@craftandoof · animator of silly things",
+      h1a:"I animate <span class='hl'>silly things</span>",
+      h1b:"and make them <span class='wob'>fluid</span> :3",
+      heroSub:"Hi, I'm <strong>Sleepy Crafto</strong>! I make Minecraft animations in Blockbench and I'm learning Blender! My main project is <strong>Fluid &amp; Foolish</strong>, a resource pack with over 150k downloads.",
+      ctaDl:"Download Fluid &amp; Foolish",ctaDc:"Join the Discord",ctaTr:"Watch the trailer",
+      stDl:"downloads",stFol:"followers",stVer:"Java versions",
+      altHead:"Sleepy Crafto's icon: a pixel-art character head wearing a brown cap",
+      projH2:"Projects I've worked on",
+      projLead:"Everything I animate lives here. Download it, try it, and tell me on Discord what you think!",
+      altFF:"Fluid & Foolish icon: a pixel-art capybara floating in the water, with the pack name on top",
+      badge:"In active development",
+      ffDesc:"<strong>Silly Moves</strong> is back with a brand-new look! It's an animation resource pack for Minecraft Java that reworks every action of your character, powered by <strong>Punchy! Moves</strong>. It's still a work in progress, so your feedback on Discord helps shape what comes next.",
+      mLic:"License",mNum:"Numbers",mNumV:"150k downloads · 52 followers",
+      h4Moves:"Loads of movement, in six categories",
+      mvIdle:"Idle, random and biome-based actions, camera",mvLoco:"Walking, trotting, running, strafing",
+      mvAir:"Jumping, falling, diving, mace",mvFly:"Creative flight and elytra",
+      mvWater:"Swimming, diving, floating",mvAct:"Bow, axolotl bucket and more",
+      shout:"I've been shouted out in videos by <strong>Enderverse</strong> and <strong>Demonjoe</strong>. Thank you so much!",
+      ctaMr:"Download on Modrinth",ctaFb:"Give feedback",lkTr:"Trailer",
+      fineP:"Powered by Punchy! Moves.",fineL:"See the mod on Modrinth",
+      trAria:"Watch the Fluid & Foolish trailer on YouTube",trAlt:"Fluid & Foolish trailer thumbnail",
+      trLbl:"Watch the trailer",ytT:"Fluid & Foolish trailer",
+      altSP:"Silly Punchies icon: the word PUNCHY! in golden pixel art over an orange background",
+      soon:"Coming soon",spP:"Fluid and Foolish, but in first person :3.",spL:"Follow along on Discord",
+      moreH:"More is coming",moreP:"As I finish new things (and learn Blender), they'll show up here.",
+      altAbout:"Sleepy Crafto icon",aboutH2:"Hi, I'm Sleepy Crafto!",
+      aboutP1:"I make animations in <strong>Blockbench</strong>, all with a silly tone full of personality. Now I'm learning <strong>Blender</strong>, so expect a level-up in my animations really soon :3.",
+      aboutP2:"I'm the founder and animator of <strong>Fluid &amp; Foolish</strong>, a public pack for Minecraft Java. The idea is simple: moving well is already good, so why not move with life? :D",
+      fTool:"Tools",fSpec:"Specialty",fSpecV:"Animations",fMain:"Main project",fFind:"Find me on",fFindV:"Discord and YouTube (@craftandoof)",
+      commH2:"Want something animated your way?",stOpen:"Commissions open",stClosed:"Commissions closed",
+      cOpenH:"My doors are open! :D",cClosedH:"Closed for now…",
+      cOpenP:"Got a silly (or serious) idea to animate? Hit me up on Discord and tell me everything!",
+      cClosedP:"Join the Discord and I'll announce there when slots open again.",
+      sc1:"Animations made in Blockbench: mobs, items, characters and movement cycles.",
+      sc2:"Price and deadline agreed case by case, after understanding what you need.",
+      sc3:"Blender is still in the oven, so for now it's Blockbench only.",
+      btnComm:"Request a commission on Discord",btnNotify:"Let me know when it opens",
+      howH:"How it works",
+      s1t:"Tell me the idea",s1p:"Message me on Discord with what you imagine: reference, model and where you'll use it.",
+      s2t:"We agree on the details",s2p:"I tell you if it fits and we agree on scope, deadline and price before starting.",
+      s3t:"I animate",s3p:"I'll share previews along the way so you can tweak whatever you want.",
+      s4t:"Delivery",s4p:"Final file ready to use. Simple as that!",
+      kofiH:"Want to help the chaos continue? :3",
+      kofiP:"Fluid &amp; Foolish is free to download! If it made your game more fun and you'd like to help keep the updates going (and our animated coffee), Ko-fi is right here. Nothing is required: a download, a hello on Discord or a share already helps a lot!",
+      kofiB:"Support on Ko-fi",
+      ctH:"Come chat!",ctLead:"Discord is the official channel for everything: questions, feedback, commissions and news.",
+      tDc:"Community, feedback and commissions",tMr:"Download Fluid &amp; Foolish",tKf:"Support my work",
+      footL:"Fluid &amp; Foolish is distributed under the ARR (All Rights Reserved) license. Not affiliated with Mojang or Microsoft. Minecraft is a trademark of Mojang AB.",
+      footTop:"Back to top",
+      metaD:"Sleepy Crafto (@craftandoof): silly, fluid animations for Minecraft. Download Fluid & Foolish, request a commission or join the Discord. :3",
+      ogD:"Creator of Fluid & Foolish, an animation resource pack for Minecraft with over 150k downloads."
+    },
+    es:{
+      skip:"Saltar al contenido",navAria:"Secciones",brandAria:"Sleepy Crafto — volver arriba",
+      nProj:"Proyectos",nAbout:"Sobre mí",nComm:"Comisiones",nSup:"Apoyo",nCont:"Contacto",dl:"Descargar",
+      kHero:"@craftandoof · animador de cosas tontas",
+      h1a:"Animo <span class='hl'>cosas tontas</span>",
+      h1b:"y las hago <span class='wob'>fluidas</span> :3",
+      heroSub:"¡Hola, soy <strong>Sleepy Crafto</strong>! Hago animaciones para Minecraft en Blockbench y estoy aprendiendo Blender. Mi proyecto principal es <strong>Fluid &amp; Foolish</strong>, un resource pack con más de 150 mil descargas.",
+      ctaDl:"Descargar Fluid &amp; Foolish",ctaDc:"Entrar al Discord",ctaTr:"Ver el tráiler",
+      stDl:"descargas",stFol:"seguidores",stVer:"versiones Java",
+      altHead:"Ícono de Sleepy Crafto: una cabeza de personaje en pixel art con una gorra marrón",
+      projH2:"Proyectos en los que he trabajado",
+      projLead:"Todo lo que animo vive aquí. ¡Descárgalo, pruébalo y cuéntame en Discord qué te pareció!",
+      altFF:"Ícono de Fluid & Foolish: un capibara en pixel art flotando en el agua, con el nombre del pack arriba",
+      badge:"En desarrollo activo",
+      ffDesc:"¡<strong>Silly Moves</strong> vuelve con un look nuevo! Es un resource pack de animaciones para Minecraft Java que renueva cada acción de tu personaje, impulsado por <strong>Punchy! Moves</strong>. Todavía es un trabajo en progreso, así que tu feedback en Discord ayuda a definir lo que viene.",
+      mLic:"Licencia",mNum:"Números",mNumV:"150k descargas · 52 seguidores",
+      h4Moves:"Un montón de movimiento, en seis categorías",
+      mvIdle:"Idle, acciones aleatorias y por bioma, cámara",mvLoco:"Caminar, trotar, correr, strafe",
+      mvAir:"Salto, caída, clavado, maza",mvFly:"Vuelo creativo y elytra",
+      mvWater:"Nadar, bucear, flotar",mvAct:"Arco, cubo de ajolote y más",
+      shout:"Ya recibí menciones en video de <strong>Enderverse</strong> y <strong>Demonjoe</strong>. ¡Muchas gracias!",
+      ctaMr:"Descargar en Modrinth",ctaFb:"Dar feedback",lkTr:"Tráiler",
+      fineP:"Impulsado por Punchy! Moves.",fineL:"Ver el mod en Modrinth",
+      trAria:"Ver el tráiler de Fluid & Foolish en YouTube",trAlt:"Miniatura del tráiler de Fluid & Foolish",
+      trLbl:"Ver el tráiler",ytT:"Tráiler de Fluid & Foolish",
+      altSP:"Ícono de Silly Punchies: la palabra PUNCHY! dorada en pixel art sobre un fondo naranja",
+      soon:"Muy pronto",spP:"Fluid and Foolish, pero en primera persona :3.",spL:"Síguelo en Discord",
+      moreH:"Viene más",moreP:"A medida que termine cosas nuevas (y aprenda Blender), irán apareciendo aquí.",
+      altAbout:"Ícono de Sleepy Crafto",aboutH2:"¡Hola, soy Sleepy Crafto!",
+      aboutP1:"Creo animaciones en <strong>Blockbench</strong>, todas con un tono tonto y lleno de personalidad. Ahora estoy aprendiendo <strong>Blender</strong>, así que espera una mejora en mis animaciones muy pronto :3.",
+      aboutP2:"Soy fundador y animador de <strong>Fluid &amp; Foolish</strong>, un pack público para Minecraft Java. La idea es simple: moverse bien ya está bien, entonces ¿por qué no moverse con vida? :D",
+      fTool:"Herramientas",fSpec:"Especialidad",fSpecV:"Animaciones",fMain:"Proyecto principal",fFind:"Dónde encontrarme",fFindV:"Discord y YouTube (@craftandoof)",
+      commH2:"¿Quieres algo animado a tu manera?",stOpen:"Comisiones abiertas",stClosed:"Comisiones cerradas",
+      cOpenH:"¡Con las puertas abiertas! :D",cClosedH:"Cerradas por ahora…",
+      cOpenP:"¿Tienes una idea tonta (o seria) para animar? ¡Escríbeme por Discord y cuéntamelo todo!",
+      cClosedP:"Entra al Discord y avisaré por ahí cuando vuelvan a abrir los cupos.",
+      sc1:"Animaciones hechas en Blockbench: mobs, ítems, personajes y ciclos de movimiento.",
+      sc2:"Precio y plazo acordados caso por caso, después de entender lo que necesitas.",
+      sc3:"Blender todavía está en el horno, así que por ahora es solo Blockbench.",
+      btnComm:"Pedir una comisión en Discord",btnNotify:"Avísenme cuando abra",
+      howH:"Cómo funciona",
+      s1t:"Cuéntame la idea",s1p:"Escríbeme por Discord con lo que imaginas: referencia, modelo y dónde lo vas a usar.",
+      s2t:"Lo acordamos",s2p:"Te digo si encaja y acordamos alcance, plazo y precio antes de empezar.",
+      s3t:"Yo animo",s3p:"Te voy mostrando avances en el camino para que ajustes lo que quieras.",
+      s4t:"Entrega",s4p:"Archivo final listo para usar. ¡Así de simple!",
+      kofiH:"¿Quieres ayudar a que el caos continúe? :3",
+      kofiP:"¡Fluid &amp; Foolish es gratis! Si hizo tu juego más divertido y quieres ayudar a mantener las actualizaciones (y nuestro cafecito animado), Ko-fi está ahí. Nada es obligatorio: una descarga, un hola en Discord o compartirlo ya ayudan muchísimo.",
+      kofiB:"Apoyar en Ko-fi",
+      ctH:"¡Ven a charlar!",ctLead:"Discord es el canal oficial para todo: dudas, feedback, comisiones y novedades.",
+      tDc:"Comunidad, feedback y comisiones",tMr:"Descargar Fluid &amp; Foolish",tKf:"Apoyar el trabajo",
+      footL:"Fluid &amp; Foolish se distribuye bajo la licencia ARR (All Rights Reserved). No está afiliado a Mojang ni a Microsoft. Minecraft es una marca de Mojang AB.",
+      footTop:"Volver arriba",
+      metaD:"Sleepy Crafto (@craftandoof): animaciones tontas y fluidas para Minecraft. Descarga Fluid & Foolish, pide una comisión o entra al Discord. :3",
+      ogD:"Creador de Fluid & Foolish, un resource pack de animaciones para Minecraft con más de 150 mil descargas."
+    },
+    ru:{
+      skip:"Перейти к содержимому",navAria:"Разделы",brandAria:"Sleepy Crafto — наверх",
+      nProj:"Проекты",nAbout:"Обо мне",nComm:"Заказы",nSup:"Поддержка",nCont:"Контакты",dl:"Скачать",
+      kHero:"@craftandoof · аниматор всяких глупостей",
+      h1a:"Анимирую <span class='hl'>глупости</span>,",
+      h1b:"делаю их <span class='wob'>плавными</span> :3",
+      heroSub:"Привет, я <strong>Sleepy Crafto</strong>! Делаю анимации для Minecraft в Blockbench и учу Blender! Мой главный проект — <strong>Fluid &amp; Foolish</strong>, ресурспак с более чем 150 тысячами скачиваний.",
+      ctaDl:"Скачать Fluid &amp; Foolish",ctaDc:"Зайти в Discord",ctaTr:"Смотреть трейлер",
+      stDl:"скачиваний",stFol:"подписчиков",stVer:"версии Java",
+      altHead:"Иконка Sleepy Crafto: голова персонажа в стиле пиксель-арт в коричневой кепке",
+      projH2:"Проекты, над которыми я работал",
+      projLead:"Всё, что я анимирую, живёт здесь. Скачивай, пробуй и расскажи в Discord, что думаешь!",
+      altFF:"Иконка Fluid & Foolish: капибара в стиле пиксель-арт, плывущая по воде, с названием пака сверху",
+      badge:"В активной разработке",
+      ffDesc:"<strong>Silly Moves</strong> вернулся с новым видом! Это ресурспак с анимациями для Minecraft Java, который переделывает каждое действие персонажа, на базе <strong>Punchy! Moves</strong>. Он всё ещё в разработке, так что твой отзыв в Discord помогает определить, что будет дальше.",
+      mLic:"Лицензия",mNum:"Цифры",mNumV:"150 тыс. скачиваний · 52 подписчика",
+      h4Moves:"Куча движений в шести категориях",
+      mvIdle:"Idle, случайные действия и по биому, камера",mvLoco:"Ходьба, рысь, бег, стрейф",
+      mvAir:"Прыжок, падение, пикирование, булава",mvFly:"Полёт в креативе и элитры",
+      mvWater:"Плавание, ныряние, дрейф",mvAct:"Лук, ведро с аксолотлем и не только",
+      shout:"Меня уже упоминали в видео <strong>Enderverse</strong> и <strong>Demonjoe</strong>. Огромное спасибо!",
+      ctaMr:"Скачать на Modrinth",ctaFb:"Оставить отзыв",lkTr:"Трейлер",
+      fineP:"Работает на Punchy! Moves.",fineL:"Посмотреть мод на Modrinth",
+      trAria:"Смотреть трейлер Fluid & Foolish на YouTube",trAlt:"Превью трейлера Fluid & Foolish",
+      trLbl:"Смотреть трейлер",ytT:"Трейлер Fluid & Foolish",
+      altSP:"Иконка Silly Punchies: золотая надпись PUNCHY! в стиле пиксель-арт на оранжевом фоне",
+      soon:"Скоро",spP:"Fluid and Foolish, только от первого лица :3.",spL:"Следить в Discord",
+      moreH:"Это ещё не всё",moreP:"По мере того как я заканчиваю новые вещи (и учу Blender), они будут появляться здесь.",
+      altAbout:"Иконка Sleepy Crafto",aboutH2:"Привет, я Sleepy Crafto!",
+      aboutP1:"Я делаю анимации в <strong>Blockbench</strong> — все с глуповатым настроением и кучей характера. Сейчас я учу <strong>Blender</strong>, так что скоро ждите апгрейд моих анимаций :3.",
+      aboutP2:"Я основатель и аниматор <strong>Fluid &amp; Foolish</strong>, публичного пака для Minecraft Java. Идея проста: двигаться хорошо — уже неплохо, так почему бы не двигаться с душой? :D",
+      fTool:"Инструменты",fSpec:"Специализация",fSpecV:"Анимации",fMain:"Главный проект",fFind:"Где меня найти",fFindV:"Discord и YouTube (@craftandoof)",
+      commH2:"Хочешь анимацию по-своему?",stOpen:"Заказы открыты",stClosed:"Заказы закрыты",
+      cOpenH:"Двери открыты! :D",cClosedH:"Пока закрыто…",
+      cOpenP:"Есть глупая (или серьёзная) идея для анимации? Пиши в Discord и расскажи всё!",
+      cClosedP:"Заходи в Discord — я сообщу там, когда места снова откроются.",
+      sc1:"Анимации в Blockbench: мобы, предметы, персонажи и циклы движения.",
+      sc2:"Цена и сроки обсуждаются индивидуально, после того как я пойму, что тебе нужно.",
+      sc3:"Blender пока в процессе изучения, так что сейчас — только Blockbench.",
+      btnComm:"Заказать анимацию в Discord",btnNotify:"Сообщите, когда откроется",
+      howH:"Как это работает",
+      s1t:"Расскажи идею",s1p:"Напиши в Discord, что ты задумал: референс, модель и где это будет использоваться.",
+      s2t:"Договариваемся",s2p:"Я скажу, подходит ли это, и мы согласуем объём, сроки и цену до начала работы.",
+      s3t:"Я анимирую",s3p:"По ходу работы показываю превью, чтобы ты мог всё поправить.",
+      s4t:"Сдача",s4p:"Готовый файл, можно использовать. Всё просто!",
+      kofiH:"Хочешь помочь хаосу продолжаться? :3",
+      kofiP:"Fluid &amp; Foolish можно скачать бесплатно! Если он сделал твою игру веселее и ты хочешь помочь с обновлениями (и нашим анимированным кофейком), Ko-fi к твоим услугам. Ничего обязательного: скачивание, привет в Discord или репост уже очень помогают!",
+      kofiB:"Поддержать на Ko-fi",
+      ctH:"Заходи пообщаться!",ctLead:"Discord — официальный канал для всего: вопросы, отзывы, заказы и новости.",
+      tDc:"Сообщество, отзывы и заказы",tMr:"Скачать Fluid &amp; Foolish",tKf:"Поддержать мою работу",
+      footL:"Fluid &amp; Foolish распространяется по лицензии ARR (All Rights Reserved). Не связан с Mojang и Microsoft. Minecraft — торговая марка Mojang AB.",
+      footTop:"Наверх",
+      metaD:"Sleepy Crafto (@craftandoof): глупые и плавные анимации для Minecraft. Скачай Fluid & Foolish, закажи анимацию или зайди в Discord. :3",
+      ogD:"Создатель Fluid & Foolish — ресурспака с анимациями для Minecraft с более чем 150 тысячами скачиваний."
+    }
+  };
+  var SUP=['pt','en','es','ru'];
+  var HL={pt:'pt-BR',en:'en',es:'es',ru:'ru'};
+
+  function t(k,fb){var o=I[cur];return(cur!=='pt'&&o&&o[k]!=null)?o[k]:fb;}
+
+  /* separa as letras de .wob para o pulinho de entrada */
+  function wob(){
+    [].forEach.call(d.querySelectorAll('.wob'),function(w){
+      var s=w.textContent; w.setAttribute('aria-label',s); w.textContent='';
+      s.split('').forEach(function(ch,k){
+        var sp=d.createElement('span'); sp.setAttribute('aria-hidden','true');
+        sp.style.setProperty('--k',k); sp.textContent=ch; w.appendChild(sp);
+      });
+    });
+  }
+
+  var els=[].slice.call(d.querySelectorAll('[data-i]'));
+  var alts=[].slice.call(d.querySelectorAll('[data-i-alt]'));
+  var arias=[].slice.call(d.querySelectorAll('[data-i-aria]'));
+  var mDesc=d.querySelector('meta[name="description"]');
+  var mOg=d.querySelector('meta[property="og:description"]');
+  var ptDesc=mDesc?mDesc.getAttribute('content'):'';
+  var ptOg=mOg?mOg.getAttribute('content'):'';
+  els.forEach(function(e){e._pt=e.innerHTML});
+  alts.forEach(function(e){e._pa=e.getAttribute('alt')});
+  arias.forEach(function(e){e._pl=e.getAttribute('aria-label')});
+  var sel=d.getElementById('lang');
+
+  function apply(lang){
+    cur=lang;
+    els.forEach(function(e){e.innerHTML=t(e.getAttribute('data-i'),e._pt)});
+    alts.forEach(function(e){e.setAttribute('alt',t(e.getAttribute('data-i-alt'),e._pa))});
+    arias.forEach(function(e){e.setAttribute('aria-label',t(e.getAttribute('data-i-aria'),e._pl))});
+    if(mDesc) mDesc.setAttribute('content',t('metaD',ptDesc));
+    if(mOg) mOg.setAttribute('content',t('ogD',ptOg));
+    d.documentElement.lang=HL[lang];
+    if(sel) sel.value=lang;
+    wob();
+  }
+
+  /* ordem: ?lang=xx  →  escolha salva  →  idioma do navegador  →  inglês */
+  function pick(){
+    var q=(location.search.match(/[?&]lang=([a-z]{2})/i)||[])[1];
+    if(q&&SUP.indexOf(q.toLowerCase())>-1) return q.toLowerCase();
+    try{var s=localStorage.getItem('lang'); if(s&&SUP.indexOf(s)>-1) return s;}catch(e){}
+    var L=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||'pt'];
+    for(var i=0;i<L.length;i++){
+      var p=String(L[i]).toLowerCase().slice(0,2);
+      if(SUP.indexOf(p)>-1) return p;
+    }
+    return 'en';
+  }
+
+  try{
+    apply(pick());
+    if(sel) sel.addEventListener('change',function(){
+      apply(sel.value);
+      try{localStorage.setItem('lang',sel.value)}catch(e){}
+    });
+  }catch(err){}
+
+  /* =======================================================
+     ANIMAÇÕES DE SCROLL, LOOPS E TRAILER
+     ======================================================= */
   try{
     var y=d.getElementById('ano'); if(y) y.textContent=new Date().getFullYear();
 
@@ -823,13 +1083,13 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
         ev.preventDefault();
         var f=d.createElement('iframe');
         f.src='https://www.youtube-nocookie.com/embed/'+yt.getAttribute('data-yt')+'?autoplay=1&rel=0';
-        f.title='Trailer do Fluid & Foolish';
+        f.title=t('ytT','Trailer do Fluid & Foolish');
         f.allow='autoplay; encrypted-media; picture-in-picture';
         f.setAttribute('allowfullscreen','');
-        var box=yt.parentNode; yt.parentNode.replaceChild(f,yt);
         f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0';
-        /* mantém a moldura 16:9 */
-        var wrap=d.createElement('div'); wrap.className='yt'; box.replaceChild(wrap,f); wrap.appendChild(f);
+        var box=yt.parentNode;
+        var wrap=d.createElement('div'); wrap.className='yt';
+        box.replaceChild(wrap,yt); wrap.appendChild(f);
         f.focus();
       });
     }
