@@ -132,7 +132,7 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
 .nav a{position:relative;text-decoration:none;padding:6px 0}
 .nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform var(--t-med) var(--ease)}
 .nav a:hover::after,.nav a:focus-visible::after{transform:scaleX(1)}
-@media (min-width:760px){.nav{display:flex}}
+@media (min-width:980px){.nav{display:flex}}
 
 /* seletor de idioma (select nativo: leve, acessível e ótimo no celular) */
 .lang{
@@ -156,9 +156,11 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
 .ph{position:absolute;inset:0;display:grid;place-items:center;padding:12px;text-align:center;font-size:.72rem;font-weight:800;line-height:1.3;color:var(--brown-7)}
 .hero__shadow{position:absolute;left:14%;right:14%;bottom:-18px;height:12px;border-radius:50%;background:var(--ink);opacity:.2}
 
-/* título: sem quebra forçada, linhas equilibradas e palavras-chave nunca partidas */
-.hero h1{font-size:clamp(2rem,8.8vw,4.4rem);text-shadow:0 3px 0 rgba(255,255,255,.5);text-wrap:balance}
-.hl{white-space:nowrap;background:linear-gradient(transparent 58%,var(--gold) 58%);padding:0 .08em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* título: uma frase por linha (como no original), com fonte que cabe em telas estreitas.
+   Se uma frase for longa demais num idioma, ela quebra sozinha, sem "balance" deixando sobra à direita. */
+.hero h1{font-size:clamp(1.5rem,calc((100vw - 40px) / 11.8),4.4rem);text-shadow:0 3px 0 rgba(255,255,255,.5)}
+.hero h1>span{display:block}
+.hl{background:linear-gradient(transparent 58%,var(--gold) 58%);padding:0 .08em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .wob{display:inline-block;white-space:nowrap}
 .wob span{display:inline-block;animation:letter .8s var(--ease) both;animation-delay:calc(1.1s + var(--k)*55ms);animation-fill-mode:none}
 .hero__sub{margin-top:14px;font-size:1.12rem;max-width:34em}
@@ -850,7 +852,7 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
       ctaMr:"Download on Modrinth",ctaFb:"Give feedback",lkTr:"Trailer",
       fineP:"Powered by Punchy! Moves.",fineL:"See the mod on Modrinth",
       trAria:"Watch the Fluid & Foolish trailer on YouTube",trAlt:"Fluid & Foolish trailer thumbnail",
-      trLbl:"Watch the trailer",ytT:"Fluid & Foolish trailer",
+      trLbl:"Watch the trailer",ytT:"Fluid & Foolish trailer",ytFail:"The player didn't load here. Click the thumbnail to open the trailer on YouTube.",
       altSP:"Silly Punchies icon: the word PUNCHY! in golden pixel art over an orange background",
       soon:"Coming soon",spP:"Fluid and Foolish, but in first person :3.",spL:"Follow along on Discord",
       moreH:"More is coming",moreP:"As I finish new things (and learn Blender), they'll show up here.",
@@ -905,7 +907,7 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
       ctaMr:"Descargar en Modrinth",ctaFb:"Dar feedback",lkTr:"Tráiler",
       fineP:"Impulsado por Punchy! Moves.",fineL:"Ver el mod en Modrinth",
       trAria:"Ver el tráiler de Fluid & Foolish en YouTube",trAlt:"Miniatura del tráiler de Fluid & Foolish",
-      trLbl:"Ver el tráiler",ytT:"Tráiler de Fluid & Foolish",
+      trLbl:"Ver el tráiler",ytT:"Tráiler de Fluid & Foolish",ytFail:"El reproductor no cargó aquí. Haz clic en la miniatura para abrir el tráiler en YouTube.",
       altSP:"Ícono de Silly Punchies: la palabra PUNCHY! dorada en pixel art sobre un fondo naranja",
       soon:"Muy pronto",spP:"Fluid and Foolish, pero en primera persona :3.",spL:"Síguelo en Discord",
       moreH:"Viene más",moreP:"A medida que termine cosas nuevas (y aprenda Blender), irán apareciendo aquí.",
@@ -960,7 +962,7 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
       ctaMr:"Скачать на Modrinth",ctaFb:"Оставить отзыв",lkTr:"Трейлер",
       fineP:"Работает на Punchy! Moves.",fineL:"Посмотреть мод на Modrinth",
       trAria:"Смотреть трейлер Fluid & Foolish на YouTube",trAlt:"Превью трейлера Fluid & Foolish",
-      trLbl:"Смотреть трейлер",ytT:"Трейлер Fluid & Foolish",
+      trLbl:"Смотреть трейлер",ytT:"Трейлер Fluid & Foolish",ytFail:"Плеер не загрузился здесь. Нажми на превью, чтобы открыть трейлер на YouTube.",
       altSP:"Иконка Silly Punchies: золотая надпись PUNCHY! в стиле пиксель-арт на оранжевом фоне",
       soon:"Скоро",spP:"Fluid and Foolish, только от первого лица :3.",spL:"Следить в Discord",
       moreH:"Это ещё не всё",moreP:"По мере того как я заканчиваю новые вещи (и учу Blender), они будут появляться здесь.",
@@ -1076,21 +1078,61 @@ h3{font-size:clamp(1.5rem,5vw,2.1rem)}
       live.forEach(function(e){lo.observe(e)});
     }
 
-    /* trailer: só carrega o player do YouTube quando a pessoa clica */
+    /* trailer: o player do YouTube só é carregado quando a pessoa clica (leve em 3G).
+       Usa a API oficial para saber se o embed falhou (erros 101/150/153, bloqueador de anúncios,
+       página aberta direto do arquivo etc.). Se falhar, a miniatura volta e o clique abre o YouTube. */
     var yt=d.querySelector('[data-yt]');
     if(yt){
+      var ytBox=yt.parentNode, ytId=yt.getAttribute('data-yt'), ytBusy=false, ytDead=false, apiP=null;
+
+      function loadApi(){
+        if(apiP) return apiP;
+        apiP=new Promise(function(ok,no){
+          if(window.YT&&window.YT.Player){ok();return;}
+          var prev=window.onYouTubeIframeAPIReady;
+          window.onYouTubeIframeAPIReady=function(){ if(prev) try{prev()}catch(e){} ok(); };
+          var s=d.createElement('script'); s.src='https://www.youtube.com/iframe_api'; s.async=true; s.onerror=no;
+          d.head.appendChild(s);
+          setTimeout(no,8000);
+        });
+        return apiP;
+      }
+
       yt.addEventListener('click',function(ev){
+        /* aberto via file:// ou depois de uma falha: deixa o link normal abrir o YouTube em outra aba */
+        if(ytDead||!/^https?:$/.test(location.protocol)) return;
         ev.preventDefault();
-        var f=d.createElement('iframe');
-        f.src='https://www.youtube-nocookie.com/embed/'+yt.getAttribute('data-yt')+'?autoplay=1&rel=0';
-        f.title=t('ytT','Trailer do Fluid & Foolish');
-        f.allow='autoplay; encrypted-media; picture-in-picture';
-        f.setAttribute('allowfullscreen','');
-        f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0';
-        var box=yt.parentNode;
+        if(ytBusy) return;
+        ytBusy=true;
+
         var wrap=d.createElement('div'); wrap.className='yt';
-        box.replaceChild(wrap,yt); wrap.appendChild(f);
-        f.focus();
+        var slot=d.createElement('div'); wrap.appendChild(slot);
+        ytBox.replaceChild(wrap,yt);
+
+        var failed=false, timer=null;
+        function fail(){
+          if(failed) return; failed=true; clearTimeout(timer);
+          ytDead=true; ytBusy=false;
+          if(wrap.parentNode===ytBox) ytBox.replaceChild(yt,wrap);
+          var note=d.createElement('p'); note.className='fine';
+          note.textContent=t('ytFail','O player não carregou aqui. Clique na miniatura para abrir o trailer no YouTube.');
+          ytBox.appendChild(note);
+        }
+
+        loadApi().then(function(){
+          new window.YT.Player(slot,{
+            videoId:ytId, width:'100%', height:'100%',
+            playerVars:{autoplay:1,rel:0,playsinline:1,modestbranding:1},
+            events:{
+              onReady:function(e){
+                clearTimeout(timer);
+                try{ var f=e.target.getIframe(); f.title=t('ytT','Trailer do Fluid & Foolish'); f.focus(); e.target.playVideo(); }catch(x){}
+              },
+              onError:fail
+            }
+          });
+          timer=setTimeout(fail,10000);
+        }).catch(fail);
       });
     }
   }catch(err){

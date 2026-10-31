@@ -1,1 +1,3 @@
-# That's my landing page, check it on https://craftandoof.github.io/sleepy-portfolio/
+Craftandoof Landing Page, acess it with
+
+- https://craftandoof.github.io/sleepy-portfolio/
